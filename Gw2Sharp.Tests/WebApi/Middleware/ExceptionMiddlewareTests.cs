@@ -23,7 +23,7 @@ namespace Gw2Sharp.Tests.WebApi.Middleware
         [InlineData("membership required", HttpStatusCode.Forbidden, typeof(MembershipRequiredException))]
         [InlineData("access restricted to guild leaders", HttpStatusCode.Forbidden, typeof(RestrictedToGuildLeadersException))]
         [InlineData("not found", HttpStatusCode.NotFound, typeof(NotFoundException))]
-#if NET461
+#if NET471
         [InlineData("too many requests", (HttpStatusCode)429, typeof(TooManyRequestsException))]
 #else
         [InlineData("too many requests", HttpStatusCode.TooManyRequests, typeof(TooManyRequestsException))]

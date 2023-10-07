@@ -23,8 +23,12 @@ namespace Gw2Sharp.Extensions
                 throw new ArgumentNullException(nameof(str));
 
 #pragma warning disable CA5350 // Do Not Use Weak Cryptographic Algorithms
+#if NETSTANDARD
             using var sha1 = new SHA1Managed();
             byte[] hash = sha1.ComputeHash(Encoding.UTF8.GetBytes(str));
+#else
+            byte[] hash = SHA1.HashData(Encoding.UTF8.GetBytes(str));
+#endif
             return string.Join("", hash.Select(x => x.ToString("X2", CultureInfo.InvariantCulture)));
 #pragma warning restore CA5350 // Do Not Use Weak Cryptographic Algorithms
         }

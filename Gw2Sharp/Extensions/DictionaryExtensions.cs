@@ -50,6 +50,8 @@ namespace Gw2Sharp.Extensions
                 dictionary[kvp.Key] = kvp.Value;
         }
 
+#if !NET7_0_OR_GREATER
+
         /// <summary>
         /// Wraps a dictionary into a read-only dictionary by calling the <see cref="ReadOnlyDictionary{TKey,TValue}"/> constructor.
         /// </summary>
@@ -66,5 +68,7 @@ namespace Gw2Sharp.Extensions
 
             return new ReadOnlyDictionary<TKey, TValue>(dictionary);
         }
+
+#endif
     }
 }
